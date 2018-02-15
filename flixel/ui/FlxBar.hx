@@ -840,7 +840,7 @@ class FlxBar extends FlxSprite
 		
 		_point.add(origin.x, origin.y);
 		if (isPixelPerfectRender(Camera))
-			//_point.floor();
+			_point.floor();
 		
 		_matrix.translate(_point.x, _point.y);
 		Camera.drawPixels(_frontFrame, material, _matrix, colorTransform);
