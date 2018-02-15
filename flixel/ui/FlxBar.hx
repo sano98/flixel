@@ -321,7 +321,7 @@ class FlxBar extends FlxSprite
 	public function createFilledBar(empty:FlxColor, fill:FlxColor, showBorder:Bool = false, border:FlxColor = FlxColor.WHITE):FlxBar
 	{
 		createColoredEmptyBar(empty, showBorder, border);
-		createColoredFilledBar(fill, showBorder, FlxColor.TRANSPARENT);
+		createColoredFilledBar(fill, showBorder, border);
 		return this;
 	}
 	
@@ -840,7 +840,7 @@ class FlxBar extends FlxSprite
 		
 		_point.add(origin.x, origin.y);
 		if (isPixelPerfectRender(Camera))
-			_point.floor();
+			//_point.floor();
 		
 		_matrix.translate(_point.x, _point.y);
 		Camera.drawPixels(_frontFrame, material, _matrix, colorTransform);
