@@ -122,6 +122,10 @@ class FlxStrip extends FlxSprite
 		_matrix.translate(origin.x, origin.y);
 		
 		getScreenPosition(_point, Camera).subtractPoint(offset);
+		
+		if (isPixelPerfectRender(Camera))
+			_point.floor();
+		
 		_matrix.translate(_point.x, _point.y);
 		
 		// now calculate transformed bounds of sprite
