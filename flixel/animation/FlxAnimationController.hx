@@ -234,6 +234,8 @@ class FlxAnimationController implements IFlxDestroyable
 		{
 			// anim must already exist
 			FlxG.log.warn("No animation called \"" + Name + "\"");
+			FlxG.log.warn("sprite: " + this._sprite + "\"");
+			
 			return;
 		}
 		
