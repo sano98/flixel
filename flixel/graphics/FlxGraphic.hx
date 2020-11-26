@@ -299,6 +299,11 @@ class FlxGraphic implements IFlxDestroyable
 	 * Whether this graphic object should stay in cache after state changes or not.
 	 */
 	public var persist:Bool = false;
+	/**
+	 * Whether this `FlxGraphic` should be destroyed object when `useCount` become zero.
+	 * Default is `true`.
+	 */
+	public var destroyOnNoUse(get, set):Bool;
 	
 	/**
 	 * Whether the `BitmapData` of this graphic object has been dumped or not.
@@ -321,7 +326,7 @@ class FlxGraphic implements IFlxDestroyable
 	/**
 	 * Usage counter for this `FlxGraphic` object.
 	 */
-	public var useCount:Int = 0;
+	public var useCount(get, set):Int;
 	
 	/**
 	 * `FlxImageFrame` object for the whole bitmap.
@@ -367,6 +372,10 @@ class FlxGraphic implements IFlxDestroyable
 	#if (openfl < "4.0.0")
 	private var _tilesheet:Tilesheet;
 	#end
+	
+	private var _useCount:Int = 0;
+	
+	private var _destroyOnNoUse:Bool = true;
 	
 	/**
 	 * `FlxGraphic` constructor
@@ -567,6 +576,34 @@ class FlxGraphic implements IFlxDestroyable
 		#else
 		return false;
 		#end
+	}
+	
+	private function get_useCount():Int
+	{
+		return _useCount;
+	}
+	
+	private function set_useCount(Value:Int):Int
+	{
+		if (Value <= 0 && _destroyOnNoUse && !persist)
+			FlxG.bitmap.remove(this);
+		
+		return _useCount = Value;
+	}
+	
+	private function get_destroyOnNoUse():Bool
+	{
+		return _destroyOnNoUse;
+	}
+	
+	private function set_destroyOnNoUse(Value:Bool):Bool
+	{
+		if (Value && _useCount <= 0 && key != null && !persist)
+		{
+			FlxG.bitmap.remove(this);
+		}
+		
+		return _destroyOnNoUse = Value;
 	}
 	
 	private function get_imageFrame():FlxImageFrame

@@ -124,8 +124,14 @@ class FlxCameraView implements IFlxDestroyable
 	 * Difference between native size of camera and zoomed size, divided in half
 	 * Needed to do occlusion of objects when zoom != initialZoom
 	 */
-	private var viewOffsetX(default, null):Float = 0;
-	private var viewOffsetY(default, null):Float = 0;
+	public var viewOffsetX(default, null):Float = 0;
+	public var viewOffsetY(default, null):Float = 0;
+
+	/**
+	 * Floored down values of viewOffsetX and viewOffsetY.
+	 */
+	private var viewOffsetXFloored:Int = 0;
+	private var viewOffsetYFloored:Int = 0;
 	
 	/**
 	 * The size of the camera plus view offset.
@@ -372,6 +378,8 @@ class FlxCameraView implements IFlxDestroyable
 		viewOffsetX = 0.5 * camera.width * (camera.scaleX - camera.initialZoom) / camera.scaleX;
 		viewOffsetWidth = camera.width - viewOffsetX;
 		viewWidth = camera.width - 2 * viewOffsetX;
+		
+		viewOffsetXFloored = Std.int(viewOffsetX);
 	}
 	
 	public function calcOffsetY():Void
@@ -379,5 +387,7 @@ class FlxCameraView implements IFlxDestroyable
 		viewOffsetY = 0.5 * camera.height * (camera.scaleY - camera.initialZoom) / camera.scaleY;
 		viewOffsetHeight = camera.height - viewOffsetY;
 		viewHeight = camera.height - 2 * viewOffsetY;
+		
+		viewOffsetYFloored = Std.int(viewOffsetY);
 	}
 }

@@ -15,7 +15,7 @@ class GLDebugRenderer extends GLDisplayObject
 	#if FLX_RENDER_GL
 	private var defaultColorMaterial:FlxMaterial = new FlxMaterial();
 	
-	private var drawCommands:FlxDrawQuadsCommand = new FlxDrawQuadsCommand(10000);
+	private var drawCommands:FlxDrawQuadsCommand = new FlxDrawQuadsCommand();
 	
 	public function new(width:Int, height:Int, context:GLContextHelper)
 	{
