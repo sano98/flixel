@@ -91,6 +91,7 @@ class FlxBitmapFont extends FlxFramesCollection
 		super(frame.parent, FlxFrameCollectionType.FONT, border);
 		this.frame = frame;
 		parent.persist = true;
+		parent.destroyOnNoUse = false;
 		characters = new Map<Int, FlxCharacter>();
 	}
 	

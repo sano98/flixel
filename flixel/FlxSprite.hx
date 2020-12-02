@@ -24,6 +24,7 @@ import flixel.graphics.shaders.FlxShader;
 import flixel.util.FlxBitmapDataUtil;
 import flixel.util.FlxColor;
 import flixel.util.FlxDestroyUtil;
+
 using flixel.util.FlxColorTransformUtil;
 
 // TODO: add updateSizeFromFrame bool which will tell sprite whether to update it's size to frame's size (when frame setter is called) or not (useful for sprites with adjusted hitbox)
