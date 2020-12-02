@@ -4,7 +4,7 @@ import flixel.FlxG;
 
 class RatioScaleMode extends BaseScaleMode
 {
-	private var fillScreen:Bool;
+	private var fillScreen:Bool = false;
 	
 	/**
 	 * @param fillScreen Whether to cut the excess side to fill the
