@@ -492,7 +492,9 @@ class FlxGLView extends FlxCameraView
 	override private function set_smoothing(value:Bool):Bool
 	{
 		_canvas.smoothing = value;
+		#if FLX_DEBUG
 		debugLayer.smoothing = value;
+		#end
 		return value;
 	}
 	
