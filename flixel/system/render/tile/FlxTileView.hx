@@ -166,7 +166,7 @@ class FlxTileView extends FlxCameraView
 	{
 		super.updateOffset();
 		
-		#if FLX_RENDER_GL
+		#if (FLX_RENDER_GL && !display)
 		_canvas.resize(camera.width, camera.height);
 		#end
 	}

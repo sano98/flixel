@@ -64,7 +64,7 @@ class FlxCameraView implements IFlxDestroyable
 	 * Whether to batch drawTriangles() calls or not.
 	 * Default value is true.
 	 */
-	public static var BATCH_TRIANGLES:Bool = #if FLX_RENDER_GL false #else true #end;
+	public static var BATCH_TRIANGLES:Bool = #if (FLX_RENDER_GL && !display) false #else true #end;
 	
 	/**
 	 * Tracks total number of `drawTiles()` calls made each frame.

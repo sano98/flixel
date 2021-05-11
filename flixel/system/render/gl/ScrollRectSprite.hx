@@ -2,10 +2,12 @@ package flixel.system.render.gl;
 
 import openfl.display.Sprite;
 import openfl.geom.Rectangle;
+#if (FLX_RENDER_GL && !display)
 import openfl._internal.renderer.RenderSession;
 import openfl._internal.renderer.opengl.GLRenderer;
 
 @:access(openfl._internal.renderer.opengl.GLRenderer)
+#end
 @:access(openfl.geom.Rectangle)
 
 class ScrollRectSprite extends Sprite
@@ -17,7 +19,7 @@ class ScrollRectSprite extends Sprite
 	{
 		super();
 	}
-	
+	#if (FLX_RENDER_GL && !display)
 	override function __renderGL(renderSession:RenderSession):Void 
 	{
 		if (!__renderable || __worldAlpha <= 0) 
@@ -76,4 +78,5 @@ class ScrollRectSprite extends Sprite
 			gl.disable(gl.SCISSOR_TEST);
 		}
 	}
+	#end
 }

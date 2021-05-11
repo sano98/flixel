@@ -1467,7 +1467,7 @@ class FlxBitmapText extends FlxSprite
 			font = value;
 			smoothing = smoothing || font.distanceField;
 			
-			#if FLX_RENDER_GL
+			#if (FLX_RENDER_GL && !display)
 			if (shader == null && font.distanceField)
 			{
 				shader = FlxBitmapFont.DistanceFieldShader;

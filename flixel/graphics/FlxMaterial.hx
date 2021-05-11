@@ -111,7 +111,7 @@ class FlxMaterial implements IFlxDestroyable
 	 */
 	public function apply(gl:GLRenderContext):Void
 	{
-		#if FLX_RENDER_GL
+		#if (FLX_RENDER_GL && !display)
 		if (shader == null)
 			return;
 		
@@ -248,7 +248,7 @@ class FlxMaterial implements IFlxDestroyable
 	 */
 	public function setTexture(name:String, texture:BitmapData):Void
 	{
-		#if (openfl >= "4.0.0")
+		#if (!display)
 		for (input in inputTextures)
 		{
 			if (input.name == name)
@@ -274,7 +274,7 @@ class FlxMaterial implements IFlxDestroyable
 		return shader = value;
 	}
 	
-	#if FLX_RENDER_GL
+	#if (FLX_RENDER_GL && !display)
 	private function updateDataIndices(gl:GLRenderContext):Void
 	{
 		if (this.gl != gl && gl != null && shader != null)
@@ -319,7 +319,7 @@ class FlxMaterial implements IFlxDestroyable
 			processGLData(glVertexSource, "uniform");
 			processGLData(glFragmentSource, "uniform");
 			
-		#if !flash
+		#if (!flash && !display)
 			var glProgram:GLProgram = shader.glProgram;
 			if (glProgram != null)
 			{	
@@ -363,7 +363,9 @@ class FlxMaterial implements IFlxDestroyable
 			if (StringTools.startsWith(type, "sampler"))
 			{	
 				var input = new ShaderInput<BitmapData>();
+				#if !display
 				input.name = name;
+				#end
 				inputTextures.push(input);
 				Reflect.setField(data, name, input);
 			} 
@@ -399,7 +401,9 @@ class FlxMaterial implements IFlxDestroyable
 				{	
 					case BOOL, BOOL2, BOOL3, BOOL4:
 						var parameter = new ShaderParameter<Bool>();
+					#if !display
 						parameter.name = name;
+					#end
 					#if !flash
 						parameter.type = parameterType;
 					#end
@@ -408,7 +412,9 @@ class FlxMaterial implements IFlxDestroyable
 					
 					case INT, INT2, INT3, INT4:
 						var parameter = new ShaderParameter<Int>();
+					#if !display
 						parameter.name = name;
+					#end
 					#if !flash
 						parameter.type = parameterType;
 					#end
@@ -417,7 +423,9 @@ class FlxMaterial implements IFlxDestroyable
 					
 					default:
 						var parameter = new ShaderParameter<Float>();
+					#if !display
 						parameter.name = name;
+					#end
 					#if !flash
 						parameter.type = parameterType;
 					#end

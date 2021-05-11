@@ -10,7 +10,7 @@ import flixel.system.render.common.FlxCameraView;
 import openfl.geom.ColorTransform;
 import openfl.geom.Matrix;
 
-#if FLX_RENDER_GL
+#if (FLX_RENDER_GL && !display)
 import flixel.graphics.shaders.triangles.FlxColoredShader;
 import flixel.graphics.shaders.triangles.FlxTexturedShader;
 

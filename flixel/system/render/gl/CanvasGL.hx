@@ -8,7 +8,7 @@ import openfl.filters.BitmapFilter;
 import openfl.geom.ColorTransform;
 import openfl.geom.Matrix;
 
-#if FLX_RENDER_GL
+#if (FLX_RENDER_GL && !display)
 import lime.graphics.opengl.GL;
 import lime.utils.Float32Array;
 import lime.graphics.GLRenderContext;
@@ -29,7 +29,7 @@ using flixel.util.FlxColorTransformUtil;
  */
 class CanvasGL extends GLDisplayObject
 {
-	#if FLX_RENDER_GL
+	#if (FLX_RENDER_GL && !display)
 	private var colorShader:FlxCameraColorTransform;
 	
 	/**

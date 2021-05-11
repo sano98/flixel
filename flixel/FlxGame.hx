@@ -37,7 +37,7 @@ import flixel.math.FlxRandom;
 import flixel.system.replay.FlxReplay;
 #end
 
-#if FLX_RENDER_GL
+#if (FLX_RENDER_GL && !display)
 import openfl._internal.renderer.RenderSession;
 import flixel.system.render.gl.GLContextHelper;
 #end
@@ -888,7 +888,7 @@ class FlxGame extends Sprite
 		return Lib.getTimer();
 	}
 	
-	#if FLX_RENDER_GL
+	#if (FLX_RENDER_GL && !display)
 	@:noCompletion
 	public var glContextHelper:GLContextHelper = new GLContextHelper();
 	

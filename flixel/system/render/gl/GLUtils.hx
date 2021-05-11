@@ -6,7 +6,7 @@ import openfl.geom.ColorTransform;
 import lime.graphics.opengl.GL;
 import lime.graphics.opengl.GLBuffer;
 
-#if FLX_RENDER_GL
+#if (FLX_RENDER_GL && !display)
 import lime.math.Matrix4;
 import openfl.display.DisplayObject;
 import openfl.filters.ShaderFilter;

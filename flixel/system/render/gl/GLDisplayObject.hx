@@ -7,7 +7,7 @@ import openfl.display.DisplayObjectContainer;
 import openfl.geom.Matrix;
 import openfl.geom.Rectangle;
 
-#if FLX_RENDER_GL
+#if (FLX_RENDER_GL && !display)
 import flixel.util.FlxDestroyUtil.IFlxDestroyable;
 import lime.graphics.GLRenderContext;
 import lime.utils.Float32Array;
@@ -24,7 +24,7 @@ import openfl._internal.renderer.opengl.GLRenderer;
  */
 class GLDisplayObject extends DisplayObjectContainer implements IFlxDestroyable
 {
-	#if FLX_RENDER_GL
+	#if (FLX_RENDER_GL && !display)
 	/**
 	 * Render texture of this display object.
 	 * All flixel's commands are drawn on this texture.

@@ -5,7 +5,7 @@ import openfl.Lib;
 import openfl.display.BitmapData;
 import openfl.display.BlendMode;
 
-#if FLX_RENDER_GL
+#if (FLX_RENDER_GL && !display)
 import flixel.graphics.shaders.FlxShader;
 
 import openfl._internal.renderer.opengl.GLBlendModeManager;
@@ -23,7 +23,7 @@ import lime.graphics.Renderer;
  */
 class GLContextHelper 
 {
-	#if FLX_RENDER_GL
+	#if (FLX_RENDER_GL && !display)
 	public var currentShader:FlxShader = null;
 	public var currentBuffer:FlxRenderTexture = null;
 	

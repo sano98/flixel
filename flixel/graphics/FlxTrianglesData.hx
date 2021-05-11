@@ -13,7 +13,7 @@ import openfl.Vector;
 import openfl.display.BitmapData;
 import openfl.display.Sprite;
 
-#if FLX_RENDER_GL
+#if (FLX_RENDER_GL && !display)
 import lime.graphics.GLRenderContext;
 import lime.utils.UInt16Array;
 import lime.utils.UInt32Array;
@@ -236,7 +236,7 @@ class FlxTrianglesData implements IFlxDestroyable
 	 */
 	public var indexCapacity(default, null):Int = 0;
 	
-	#if FLX_RENDER_GL
+	#if (FLX_RENDER_GL && !display)
 	/**
 	 * Internal typed arrays and buffers used only for OpenGL rendering
 	 */
@@ -283,7 +283,7 @@ class FlxTrianglesData implements IFlxDestroyable
 		colors = new Vector<FlxColor>();
 		indices = new Vector<Int>();
 		
-		#if FLX_RENDER_GL
+		#if (FLX_RENDER_GL && !display)
 		verticesArray = new Float32Array(vertexCapacity << 1);
 		uvsArray = new Float32Array(vertexCapacity << 1);
 		colorsArray = new UInt32Array(vertexCapacity);
@@ -307,7 +307,7 @@ class FlxTrianglesData implements IFlxDestroyable
 		indexCount = 0;
 		trianglesOffset = 0;
 		
-		#if FLX_RENDER_GL
+		#if (FLX_RENDER_GL && !display)
 		gl = null;
 		verticesArray = null;
 		uvsArray = null;
@@ -475,7 +475,7 @@ class FlxTrianglesData implements IFlxDestroyable
 		
 		colors[vertexCount] = color;
 		
-		#if FLX_RENDER_GL
+		#if (FLX_RENDER_GL && !display)
 		verticesArray[pos] = x;
 		verticesArray[pos + 1] = y;
 		
@@ -517,7 +517,7 @@ class FlxTrianglesData implements IFlxDestroyable
 		indices[indexCount + 1] = i2;
 		indices[indexCount + 2] = i3;
 		
-		#if FLX_RENDER_GL
+		#if (FLX_RENDER_GL && !display)
 		indicesArray[indexCount] = i1;
 		indicesArray[indexCount + 1] = i2;
 		indicesArray[indexCount + 2] = i3;
@@ -637,7 +637,7 @@ class FlxTrianglesData implements IFlxDestroyable
 		vertices[pos] = x;
 		vertices[pos + 1] = y;
 		
-		#if FLX_RENDER_GL
+		#if (FLX_RENDER_GL && !display)
 		verticesArray[pos] = x;
 		verticesArray[pos + 1] = y;
 		#end
@@ -686,7 +686,7 @@ class FlxTrianglesData implements IFlxDestroyable
 		var pos:Int = vertexId << 1;
 		vertices[pos] = x;
 		
-		#if FLX_RENDER_GL
+		#if (FLX_RENDER_GL && !display)
 		verticesArray[pos] = x;
 		#end
 		
@@ -729,7 +729,7 @@ class FlxTrianglesData implements IFlxDestroyable
 		var pos:Int = vertexId << 1;
 		vertices[pos + 1] = y;
 		
-		#if FLX_RENDER_GL
+		#if (FLX_RENDER_GL && !display)
 		verticesArray[pos + 1] = y;
 		#end
 		
@@ -774,7 +774,7 @@ class FlxTrianglesData implements IFlxDestroyable
 		uvs[pos] = u;
 		uvs[pos + 1] = v;
 		
-		#if FLX_RENDER_GL
+		#if (FLX_RENDER_GL && !display)
 		uvsArray[pos] = u;
 		uvsArray[pos + 1] = v;
 		#end
@@ -823,7 +823,7 @@ class FlxTrianglesData implements IFlxDestroyable
 		var pos:Int = vertexId << 1;
 		uvs[pos] = u;
 		
-		#if FLX_RENDER_GL
+		#if (FLX_RENDER_GL && !display)
 		uvsArray[pos] = u;
 		#end
 		
@@ -866,7 +866,7 @@ class FlxTrianglesData implements IFlxDestroyable
 		var pos:Int = vertexId << 1;
 		uvs[pos + 1] = v;
 		
-		#if FLX_RENDER_GL
+		#if (FLX_RENDER_GL && !display)
 		uvsArray[pos + 1] = v;
 		#end
 		
@@ -908,7 +908,7 @@ class FlxTrianglesData implements IFlxDestroyable
 		
 		colors[vertexId] = color;
 		
-		#if FLX_RENDER_GL
+		#if (FLX_RENDER_GL && !display)
 		colorsArray[vertexId] = color;
 		#end
 		
@@ -943,7 +943,7 @@ class FlxTrianglesData implements IFlxDestroyable
 	{
 		if (value > vertexCapacity)
 		{
-			#if FLX_RENDER_GL
+			#if (FLX_RENDER_GL && !display)
 			var newVertices = new Float32Array(value << 1);
 			var newUVs = new Float32Array(value << 1);
 			var newColors = new UInt32Array(value);
@@ -994,7 +994,7 @@ class FlxTrianglesData implements IFlxDestroyable
 	{
 		if (value > indexCapacity)
 		{
-			#if FLX_RENDER_GL
+			#if (FLX_RENDER_GL && !display)
 			var newIndices = new UInt16Array(value);
 			
 			if (saveData)
@@ -1027,7 +1027,7 @@ class FlxTrianglesData implements IFlxDestroyable
 			
 			if (uvs != null) uvs.length = value.length;
 			
-			#if FLX_RENDER_GL
+			#if (FLX_RENDER_GL && !display)
 			for (i in 0...value.length)
 				verticesArray[i] = value[i];
 			#end
@@ -1045,7 +1045,7 @@ class FlxTrianglesData implements IFlxDestroyable
 		{
 			extendVertices(value.length >> 1, false);
 			
-			#if FLX_RENDER_GL
+			#if (FLX_RENDER_GL && !display)
 			for (i in 0...value.length)
 				uvsArray[i] = value[i];
 			#end
@@ -1064,7 +1064,7 @@ class FlxTrianglesData implements IFlxDestroyable
 			var numColors:Int = value.length;
 			extendVertices(numColors, false);
 			
-			#if FLX_RENDER_GL
+			#if (FLX_RENDER_GL && !display)
 			for (i in 0...value.length)
 				colorsArray[i] = value[i];
 			#end
@@ -1086,7 +1086,7 @@ class FlxTrianglesData implements IFlxDestroyable
 			extendIndices(numIndices, false);
 			indexCount = numIndices;
 			
-			#if FLX_RENDER_GL
+			#if (FLX_RENDER_GL && !display)
 			for (i in 0...value.length)
 				indicesArray[i] = value[i];
 			#end
@@ -1126,7 +1126,7 @@ class FlxTrianglesData implements IFlxDestroyable
 		return Std.int(indexCount / 3);
 	}
 	
-	#if FLX_RENDER_GL
+	#if (FLX_RENDER_GL && !display)
 	public function setContext(gl:GLRenderContext):Void
 	{
 		if (this.gl == null || this.gl != gl)

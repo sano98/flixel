@@ -12,7 +12,7 @@ import openfl.Vector;
  */
 class GLDebugRenderer extends GLDisplayObject
 {
-	#if FLX_RENDER_GL
+	#if (FLX_RENDER_GL && !display)
 	private var defaultColorMaterial:FlxMaterial = new FlxMaterial();
 	
 	private var drawCommands:FlxDrawQuadsCommand = new FlxDrawQuadsCommand();

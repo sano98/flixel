@@ -14,7 +14,7 @@ import openfl.display.BlendMode;
 import openfl.geom.ColorTransform;
 import flixel.graphics.shaders.FlxShader;
 
-#if FLX_RENDER_GL
+#if (FLX_RENDER_GL && !display)
 import flixel.graphics.shaders.quads.FlxColoredShader;
 import flixel.graphics.shaders.quads.FlxTexturedShader;
 import lime.graphics.opengl.GLBuffer;

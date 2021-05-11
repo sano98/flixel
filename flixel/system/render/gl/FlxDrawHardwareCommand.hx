@@ -6,7 +6,7 @@ import flixel.math.FlxMatrix;
 import flixel.system.render.common.FlxDrawBaseCommand;
 import lime.graphics.GLRenderContext;
 
-#if FLX_RENDER_GL
+#if (FLX_RENDER_GL && !display)
 import lime.math.Matrix4;
 
 /**

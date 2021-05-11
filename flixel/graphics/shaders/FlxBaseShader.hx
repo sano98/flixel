@@ -11,7 +11,7 @@ class FlxBaseShader extends FlxShader
 		super();
 		#end
 		
-		#if FLX_RENDER_GL
+		#if (FLX_RENDER_GL && !display)
 		glVertexSource = vertexSource;
 		glFragmentSource = fragmentSource;
 		
