@@ -25,7 +25,7 @@ import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.util.FlxDestroyUtil;
 import flixel.util.FlxDestroyUtil.IFlxDestroyable;
 #if FLX_STEAMWRAP
-import steamwrap.api.Controller.EControllerActionOrigin;
+import steamwrap.api.Controller.EInputActionOrigin;
 #end
 
 using flixel.util.FlxArrayUtil;
@@ -351,7 +351,7 @@ class FlxAction implements IFlxDestroyable
 
 	#if FLX_STEAMWRAP
 	var _steamOriginsChecksum:Int = 0;
-	var _steamOrigins:Array<EControllerActionOrigin>;
+	var _steamOrigins:Array<EInputActionOrigin>;
 	#end
 
 	function new(InputType:FlxInputType, Name:String)
@@ -375,7 +375,7 @@ class FlxAction implements IFlxDestroyable
 			return 0;
 		for (i in 0..._steamOrigins.length)
 		{
-			if (_steamOrigins[i] != EControllerActionOrigin.NONE)
+			if (_steamOrigins[i] != EInputActionOrigin.NONE)
 			{
 				return cast _steamOrigins[i];
 			}

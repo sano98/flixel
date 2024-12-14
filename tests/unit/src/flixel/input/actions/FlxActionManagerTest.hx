@@ -635,7 +635,7 @@ class FlxActionManagerTest extends FlxTest
 			step();
 			@:privateAccess steamManager.update();
 
-			var dOrigins:Array<EControllerActionOrigin> =
+			var dOrigins:Array<EInputActionOrigin> =
 			[
 				LEFTPAD_DPADNORTH,
 				LEFTPAD_DPADSOUTH,
@@ -649,7 +649,7 @@ class FlxActionManagerTest extends FlxTest
 				BACK
 			];
 
-			var aOrigins:Array<EControllerActionOrigin> =
+			var aOrigins:Array<EInputActionOrigin> =
 			[
 				LEFTSTICK_MOVE
 			];

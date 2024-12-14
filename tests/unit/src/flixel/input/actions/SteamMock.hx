@@ -13,8 +13,8 @@ class SteamMock
 	public static var digitalData:Map<String, ControllerDigitalActionData>;
 	public static var analogData:Map<String, ControllerAnalogActionData>;
 
-	public static var digitalOrigins:Map<String, Array<EControllerActionOrigin>>;
-	public static var analogOrigins:Map<String, Array<EControllerActionOrigin>>;
+	public static var digitalOrigins:Map<String, Array<EInputActionOrigin>>;
+	public static var analogOrigins:Map<String, Array<EInputActionOrigin>>;
 
 	static var inited:Bool = false;
 	static var flxInited:Bool = false;
@@ -28,8 +28,8 @@ class SteamMock
 		digitalData = new Map<String, ControllerDigitalActionData>();
 		analogData = new Map<String, ControllerAnalogActionData>();
 
-		digitalOrigins = new Map<String, Array<EControllerActionOrigin>>();
-		analogOrigins = new Map<String, Array<EControllerActionOrigin>>();
+		digitalOrigins = new Map<String, Array<EInputActionOrigin>>();
+		analogOrigins = new Map<String, Array<EInputActionOrigin>>();
 
 		Steam.controllers = new FakeController(function(str:String)
 		{
@@ -98,7 +98,7 @@ class SteamMock
 		data.y = y;
 	}
 
-	public static function setDigitalActionOrigins(controller:Int, actionSet:Int, action:Int, origins:Array<EControllerActionOrigin>)
+	public static function setDigitalActionOrigins(controller:Int, actionSet:Int, action:Int, origins:Array<EInputActionOrigin>)
 	{
 		if (!inited)
 			init();
@@ -107,7 +107,7 @@ class SteamMock
 		digitalOrigins.set(key, origins);
 	}
 
-	public static function setAnalogActionOrigins(controller:Int, actionSet:Int, action:Int, origins:Array<EControllerActionOrigin>)
+	public static function setAnalogActionOrigins(controller:Int, actionSet:Int, action:Int, origins:Array<EInputActionOrigin>)
 	{
 		if (!inited)
 			init();
@@ -169,7 +169,7 @@ class FakeController extends Controller
 		return data;
 	}
 
-	override public function getDigitalActionOrigins(controller:Int, actionSet:Int, action:Int, ?originsOut:Array<EControllerActionOrigin>):Int
+	override public function getDigitalActionOrigins(controller:Int, actionSet:Int, action:Int, ?originsOut:Array<EInputActionOrigin>):Int
 	{
 		var key = controller + "_" + actionSet + "_" + action;
 
@@ -198,7 +198,7 @@ class FakeController extends Controller
 		return originsOut.length;
 	}
 
-	override public function getAnalogActionOrigins(controller:Int, actionSet:Int, action:Int, ?originsOut:Array<EControllerActionOrigin>):Int
+	override public function getAnalogActionOrigins(controller:Int, actionSet:Int, action:Int, ?originsOut:Array<EInputActionOrigin>):Int
 	{
 		var key = controller + "_" + actionSet + "_" + action;
 
